@@ -64,7 +64,7 @@ public class Dashboard extends JFrame {
 		navbar.add(panel_1);
 		panel_1.setLayout(null);
 		
-		JLabel logo = new JLabel("Logo e os carais");
+		JLabel logo = new JLabel("Logo e nome do marca");
 		logo.setForeground(Color.WHITE);
 		logo.setHorizontalAlignment(SwingConstants.CENTER);
 		logo.setFont(new Font("Arial", Font.PLAIN, 24));
@@ -83,7 +83,7 @@ public class Dashboard extends JFrame {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				llbl1.setBackground(new Color(128, 0, 128));
-	
+				
 			}
 			
 			@Override
@@ -97,6 +97,16 @@ public class Dashboard extends JFrame {
 		navbar.add(llbl1);
 		
 		JLabel lbl2 = new JLabel("Altera\u00E7\u00E3o");
+		lbl2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lbl2.setBackground(new Color(128, 0, 128));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lbl2.setBackground(new Color(147, 112, 219));
+			}
+		});
 		lbl2.setOpaque(true);
 		lbl2.setForeground(Color.WHITE);
 		lbl2.setFont(new Font("Book Antiqua", Font.PLAIN, 18));
@@ -123,14 +133,6 @@ public class Dashboard extends JFrame {
 		lblSair.setFont(new Font("Book Antiqua", Font.PLAIN, 18));
 		lblSair.setBounds(34, 287, 125, 30);
 		navbar.add(lblSair);
-		
-		JButton btnNewButton = new JButton("Cadastro");
-		btnNewButton.setBorderPainted(false);
-		btnNewButton.setForeground(Color.BLACK);
-		btnNewButton.setFont(new Font("Book Antiqua", Font.PLAIN, 18));
-		btnNewButton.setBackground(new Color(138, 43, 226));
-		btnNewButton.setBounds(23, 344, 153, 41);
-		navbar.add(btnNewButton);
 		
 		JPanel dash_item1 = new JPanel();
 		dash_item1.setBackground(new Color(176, 224, 230));
