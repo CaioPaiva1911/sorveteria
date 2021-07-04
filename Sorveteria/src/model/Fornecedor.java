@@ -2,6 +2,7 @@ package model;
 
 public class Fornecedor {
 	
+	private Integer id;
 	private String nome;
 	private String endereco;
 	
@@ -9,6 +10,17 @@ public class Fornecedor {
 		super();
 		this.nome = nome;
 		this.endereco = endereco;
+	}
+	
+	public Fornecedor(Integer id, String nome, String endereco) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.endereco = endereco;
+	}
+	
+	public Integer getId() {
+		return id;
 	}
 	
 	public String getNome() {
