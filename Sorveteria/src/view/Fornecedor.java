@@ -11,6 +11,10 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 
 public class Fornecedor extends JInternalFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField txtNome;
 	private JTextField txtEndereco;
 
@@ -34,6 +38,7 @@ public class Fornecedor extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public Fornecedor() {
+		setTitle("Cadastrar");
 		getContentPane().setBackground(new Color(255, 255, 153));
 		getContentPane().setLayout(null);
 		
@@ -56,11 +61,13 @@ public class Fornecedor extends JInternalFrame {
 		getContentPane().add(lblEndereo);
 		
 		txtNome = new JTextField();
+		txtNome.setFont(new Font("Arial", Font.PLAIN, 12));
 		txtNome.setBounds(110, 122, 141, 20);
 		getContentPane().add(txtNome);
 		txtNome.setColumns(10);
 		
 		txtEndereco = new JTextField();
+		txtEndereco.setFont(new Font("Arial", Font.PLAIN, 12));
 		txtEndereco.setColumns(10);
 		txtEndereco.setBounds(110, 153, 314, 20);
 		getContentPane().add(txtEndereco);

@@ -169,7 +169,7 @@ public class Dashboard extends JFrame {
 		panel_2_1.add(lblDash_1_2);
 		
 		JLabel lblNewLabel = new JLabel("Dashboard");
-		lblNewLabel.setBounds(44, 102, 233, 38);
+		lblNewLabel.setBounds(41, 96, 233, 38);
 		lblNewLabel.setFont(new Font("Book Antiqua", Font.BOLD, 31));
 		Menu.add(lblNewLabel);
 		

@@ -13,7 +13,7 @@ import java.beans.PropertyVetoException;
 import javax.swing.SwingConstants;
 import javax.swing.JPanel;
 
-public class login extends JInternalFrame {
+public class Login extends JInternalFrame {
 	/**
 	 * 
 	 */
@@ -28,7 +28,7 @@ public class login extends JInternalFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					login frame = new login();
+					Login frame = new Login();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,12 +41,13 @@ public class login extends JInternalFrame {
 	 * Create the frame.
 	 * @throws PropertyVetoException 
 	 */
-	public login() throws PropertyVetoException {
+	public Login() throws PropertyVetoException {
+		setTitle("Acessar");
 		getContentPane().setFont(new Font("Arial", Font.PLAIN, 16));
 		setMaximum(true);
 		setIconifiable(true);
 		setMaximizable(true);
-		getContentPane().setBackground(new Color(255, 255, 102));
+		getContentPane().setBackground(new Color(255, 255, 153));
 		getContentPane().setLayout(null);
 		
 		JLabel lblLogin = new JLabel("Login");
@@ -60,6 +61,7 @@ public class login extends JInternalFrame {
 		getContentPane().add(lblSenha);
 		
 		textField = new JTextField();
+		textField.setFont(new Font("Arial", Font.PLAIN, 12));
 		textField.setBounds(66, 163, 249, 28);
 		getContentPane().add(textField);
 		textField.setColumns(10);
@@ -71,6 +73,7 @@ public class login extends JInternalFrame {
 		getContentPane().add(btnAcessar);
 		
 		textField_1 = new JTextField();
+		textField_1.setFont(new Font("Arial", Font.PLAIN, 12));
 		textField_1.setColumns(10);
 		textField_1.setBounds(66, 236, 249, 28);
 		getContentPane().add(textField_1);

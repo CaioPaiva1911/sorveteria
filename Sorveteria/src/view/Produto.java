@@ -11,6 +11,10 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 
 public class Produto extends JInternalFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField txtNome;
 	private JTextField txtDescricao;
 	private JTextField txtSabor;
@@ -37,6 +41,8 @@ public class Produto extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public Produto() {
+		getContentPane().setFont(new Font("Arial", Font.PLAIN, 12));
+		setTitle("Cadastro de Produto");
 		getContentPane().setBackground(new Color(255, 255, 153));
 		getContentPane().setLayout(null);
 		
@@ -77,26 +83,31 @@ public class Produto extends JInternalFrame {
 		getContentPane().add(lblNome);
 		
 		txtNome = new JTextField();
+		txtNome.setFont(new Font("Arial", Font.PLAIN, 12));
 		txtNome.setBounds(198, 98, 180, 23);
 		getContentPane().add(txtNome);
 		txtNome.setColumns(10);
 		
 		txtDescricao = new JTextField();
+		txtDescricao.setFont(new Font("Arial", Font.PLAIN, 12));
 		txtDescricao.setColumns(10);
 		txtDescricao.setBounds(198, 133, 180, 23);
 		getContentPane().add(txtDescricao);
 		
 		txtSabor = new JTextField();
+		txtSabor.setFont(new Font("Arial", Font.PLAIN, 12));
 		txtSabor.setColumns(10);
 		txtSabor.setBounds(198, 168, 180, 23);
 		getContentPane().add(txtSabor);
 		
 		txtPreco = new JTextField();
+		txtPreco.setFont(new Font("Arial", Font.PLAIN, 12));
 		txtPreco.setColumns(10);
 		txtPreco.setBounds(198, 203, 180, 23);
 		getContentPane().add(txtPreco);
 		
 		txtQtd = new JTextField();
+		txtQtd.setFont(new Font("Arial", Font.PLAIN, 12));
 		txtQtd.setColumns(10);
 		txtQtd.setBounds(198, 239, 180, 23);
 		getContentPane().add(txtQtd);
