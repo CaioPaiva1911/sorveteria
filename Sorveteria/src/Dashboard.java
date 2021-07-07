@@ -12,6 +12,19 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import java.awt.Cursor;
+import javax.swing.JInternalFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.ImageIcon;
+import javax.swing.UIManager;
+import java.awt.Component;
+import javax.swing.Box;
+import java.awt.Dimension;
+import javax.swing.JDesktopPane;
+import java.awt.ComponentOrientation;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class Dashboard extends JFrame {
 
@@ -44,96 +57,16 @@ public class Dashboard extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 909, 543);
 		Menu = new JPanel();
+		Menu.setSize(new Dimension(3800, 90));
+		Menu.setFont(new Font("Arial", Font.PLAIN, 16));
 		Menu.setBackground(new Color(255, 255, 153));
 		Menu.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(Menu);
 		Menu.setLayout(null);
 		
-		JPanel navbar = new JPanel();
-		navbar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		navbar.setForeground(Color.WHITE);
-		navbar.setBackground(new Color(147, 112, 219));
-		navbar.setBounds(0, 0, 207, 535);
-		Menu.add(navbar);
-		navbar.setLayout(null);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(0, 0, 207, 98);
-		panel_1.setBackground(new Color(128, 0, 128));
-		navbar.add(panel_1);
-		panel_1.setLayout(null);
-		
-		JLabel logo = new JLabel("Logo e os carais");
-		logo.setForeground(Color.WHITE);
-		logo.setHorizontalAlignment(SwingConstants.CENTER);
-		logo.setFont(new Font("Arial", Font.PLAIN, 24));
-		logo.setBounds(0, 11, 184, 58);
-		panel_1.add(logo);
-		
-		JLabel llbl1 = new JLabel("Cadastro");
-		llbl1.setOpaque(true);
-		llbl1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		llbl1.setBorder(null);
-		llbl1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseReleased(MouseEvent e) {
-		
-			}
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				llbl1.setBackground(new Color(128, 0, 128));
-	
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				llbl1.setBackground(new Color(147, 112, 219));
-			}
-		});
-		llbl1.setForeground(Color.WHITE);
-		llbl1.setFont(new Font("Book Antiqua", Font.PLAIN, 18));
-		llbl1.setBounds(34, 109, 125, 30);
-		navbar.add(llbl1);
-		
-		JLabel lbl2 = new JLabel("Altera\u00E7\u00E3o");
-		lbl2.setOpaque(true);
-		lbl2.setForeground(Color.WHITE);
-		lbl2.setFont(new Font("Book Antiqua", Font.PLAIN, 18));
-		lbl2.setBounds(34, 150, 125, 30);
-		navbar.add(lbl2);
-		
-		JLabel lbl3 = new JLabel("Lista");
-		lbl3.setOpaque(true);
-		lbl3.setForeground(Color.WHITE);
-		lbl3.setFont(new Font("Book Antiqua", Font.PLAIN, 18));
-		lbl3.setBounds(34, 191, 125, 30);
-		navbar.add(lbl3);
-		
-		JLabel lbl4 = new JLabel("Perfil Conta");
-		lbl4.setOpaque(true);
-		lbl4.setForeground(Color.WHITE);
-		lbl4.setFont(new Font("Book Antiqua", Font.PLAIN, 18));
-		lbl4.setBounds(34, 236, 125, 30);
-		navbar.add(lbl4);
-		
-		JLabel lblSair = new JLabel("Sair");
-		lblSair.setOpaque(true);
-		lblSair.setForeground(Color.WHITE);
-		lblSair.setFont(new Font("Book Antiqua", Font.PLAIN, 18));
-		lblSair.setBounds(34, 287, 125, 30);
-		navbar.add(lblSair);
-		
-		JButton btnNewButton = new JButton("Cadastro");
-		btnNewButton.setBorderPainted(false);
-		btnNewButton.setForeground(Color.BLACK);
-		btnNewButton.setFont(new Font("Book Antiqua", Font.PLAIN, 18));
-		btnNewButton.setBackground(new Color(138, 43, 226));
-		btnNewButton.setBounds(23, 344, 153, 41);
-		navbar.add(btnNewButton);
-		
 		JPanel dash_item1 = new JPanel();
-		dash_item1.setBackground(new Color(176, 224, 230));
 		dash_item1.setBounds(626, 76, 240, 200);
+		dash_item1.setBackground(new Color(176, 224, 230));
 		Menu.add(dash_item1);
 		dash_item1.setLayout(null);
 		
@@ -162,8 +95,8 @@ public class Dashboard extends JFrame {
 		dash_item1.add(lblNewLabel_2);
 		
 		JPanel dash_item2 = new JPanel();
-		dash_item2.setBackground(new Color(144, 238, 144));
 		dash_item2.setBounds(244, 76, 240, 200);
+		dash_item2.setBackground(new Color(144, 238, 144));
 		Menu.add(dash_item2);
 		dash_item2.setLayout(null);
 		
@@ -194,8 +127,8 @@ public class Dashboard extends JFrame {
 		dash_item2.add(lblNewLabel_2_1);
 		
 		JPanel dash_item3 = new JPanel();
-		dash_item3.setBackground(new Color(176, 224, 230));
 		dash_item3.setBounds(244, 287, 240, 200);
+		dash_item3.setBackground(new Color(176, 224, 230));
 		Menu.add(dash_item3);
 		dash_item3.setLayout(null);
 		
@@ -218,8 +151,8 @@ public class Dashboard extends JFrame {
 		dash_item3.add(lblNewLabel_1_1);
 		
 		JPanel dash_item4 = new JPanel();
-		dash_item4.setBackground(new Color(176, 224, 230));
 		dash_item4.setBounds(626, 287, 240, 200);
+		dash_item4.setBackground(new Color(176, 224, 230));
 		Menu.add(dash_item4);
 		dash_item4.setLayout(null);
 		
@@ -236,9 +169,116 @@ public class Dashboard extends JFrame {
 		panel_2_1.add(lblDash_1_2);
 		
 		JLabel lblNewLabel = new JLabel("Dashboard");
+		lblNewLabel.setBounds(44, 102, 233, 38);
 		lblNewLabel.setFont(new Font("Book Antiqua", Font.BOLD, 31));
-		lblNewLabel.setBounds(244, 11, 233, 38);
 		Menu.add(lblNewLabel);
+		
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentResized(ComponentEvent e) {
+				menuBar.setPreferredSize(new Dimension(2000, 60));
+			}
+		});
+		menuBar.setSize(new Dimension(3200, 80));
+		menuBar.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+		menuBar.setAlignmentX(Component.RIGHT_ALIGNMENT);
+		menuBar.setMaximumSize(new Dimension(3000, 60));
+		
+		menuBar.setBounds(0, 0, 893, 66);
+		menuBar.setFont(new Font("Arial", Font.PLAIN, 14));
+		menuBar.setBackground(new Color(255, 182, 193));
+		Menu.add(menuBar);
+		
+		JMenu itemCadastro = new JMenu("Cadastro");
+		itemCadastro.setIcon(new ImageIcon(Dashboard.class.getResource("/icons/cadastro.png")));
+		itemCadastro.setBackground(new Color(148, 0, 211));
+		itemCadastro.setFont(new Font("Arial", Font.PLAIN, 16));
+		menuBar.add(itemCadastro);
+		
+		JMenu itemLogin = new JMenu("Login");
+		itemLogin.setFont(new Font("Arial", Font.PLAIN, 16));
+		itemCadastro.add(itemLogin);
+		
+		JMenuItem itemCliente = new JMenuItem("Cliente");
+		itemCliente.setFont(new Font("Arial", Font.PLAIN, 16));
+		itemLogin.add(itemCliente);
+		
+		JMenu itemProduto = new JMenu("Produto");
+		itemProduto.setFont(new Font("Arial", Font.PLAIN, 16));
+		itemLogin.add(itemProduto);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("Desconto");
+		mntmNewMenuItem.setFont(new Font("Arial", Font.PLAIN, 16));
+		itemProduto.add(mntmNewMenuItem);
+		
+		JMenuItem itemFornecedor = new JMenuItem("Fornecedor");
+		itemFornecedor.setFont(new Font("Arial", Font.PLAIN, 16));
+		itemLogin.add(itemFornecedor);
+		
+		JMenu mnNewMenu = new JMenu("Altera\u00E7\u00E3o");
+		mnNewMenu.setIcon(new ImageIcon(Dashboard.class.getResource("/icons/alterar.png")));
+		mnNewMenu.setBackground(new Color(148, 0, 211));
+		mnNewMenu.setFont(new Font("Arial", Font.PLAIN, 16));
+		menuBar.add(mnNewMenu);
+		
+		JMenu itemLogin_1 = new JMenu("Login");
+		itemLogin_1.setFont(new Font("Arial", Font.PLAIN, 16));
+		mnNewMenu.add(itemLogin_1);
+		
+		JMenuItem itemCliente_1 = new JMenuItem("Cliente");
+		itemCliente_1.setFont(new Font("Arial", Font.PLAIN, 16));
+		itemLogin_1.add(itemCliente_1);
+		
+		JMenu itemProduto_1 = new JMenu("Produto");
+		itemProduto_1.setFont(new Font("Arial", Font.PLAIN, 16));
+		itemLogin_1.add(itemProduto_1);
+		
+		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Desconto");
+		mntmNewMenuItem_1.setFont(new Font("Arial", Font.PLAIN, 16));
+		itemProduto_1.add(mntmNewMenuItem_1);
+		
+		JMenuItem itemFornecedor_1 = new JMenuItem("Fornecedor");
+		itemFornecedor_1.setFont(new Font("Arial", Font.PLAIN, 16));
+		itemLogin_1.add(itemFornecedor_1);
+		
+		JMenu itemLista = new JMenu("Lista");
+		itemLista.setIcon(new ImageIcon(Dashboard.class.getResource("/icons/lista.png")));
+		itemLista.setBackground(new Color(148, 0, 211));
+		itemLista.setFont(new Font("Arial", Font.PLAIN, 16));
+		menuBar.add(itemLista);
+		
+		JMenu mnNewMenu_1 = new JMenu("Produto");
+		mnNewMenu_1.setFont(new Font("Arial", Font.PLAIN, 16));
+		itemLista.add(mnNewMenu_1);
+		
+		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Op\u00E7\u00E3o Comprar");
+		mntmNewMenuItem_2.setFont(new Font("Arial", Font.PLAIN, 16));
+		mnNewMenu_1.add(mntmNewMenuItem_2);
+		
+		JMenuItem itemFornece = new JMenuItem("Fornecedor");
+		itemFornece.setFont(new Font("Arial", Font.PLAIN, 16));
+		itemLista.add(itemFornece);
+		
+		JMenu itemPerfil = new JMenu("Perfil Compra");
+		itemPerfil.setIcon(new ImageIcon(Dashboard.class.getResource("/icons/perfil.png")));
+		itemPerfil.setFont(new Font("Arial", Font.PLAIN, 16));
+		menuBar.add(itemPerfil);
+		
+		JMenu mnNewMenu_2 = new JMenu("Sair");
+		mnNewMenu_2.setBackground(new Color(255, 0, 0));
+		mnNewMenu_2.setIcon(new ImageIcon(Dashboard.class.getResource("/icons/sair.png")));
+		mnNewMenu_2.setFont(new Font("Arial", Font.PLAIN, 16));
+		menuBar.add(mnNewMenu_2);
+		
+		JLabel lblLogo = new JLabel("Sorveteria");
+		lblLogo.setFont(new Font("Arial", Font.BOLD, 20));
+		lblLogo.setIcon(new ImageIcon(Dashboard.class.getResource("/icons/ice-cream.png")));
+		menuBar.add(lblLogo);
+		
+		JDesktopPane desktop = new JDesktopPane();
+		desktop.setBounds(0, 498, 893, -423);
+		Menu.add(desktop);
 		
 		// Center de form
 		this.setLocationRelativeTo(null);

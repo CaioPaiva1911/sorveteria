@@ -37,14 +37,17 @@ public class Dashboard extends JFrame {
 			}
 		});
 	}
-
+	
+	
+	
 	/**
 	 * Create the frame.
 	 */
 	public Dashboard() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 909, 543);
-		Menu = new JPanel();
+		Menu = 
+				new JPanel();
 		Menu.setBackground(new Color(255, 255, 153));
 		Menu.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(Menu);
@@ -245,5 +248,8 @@ public class Dashboard extends JFrame {
 		
 		// Center de form
 		this.setLocationRelativeTo(null);
+		
+		
+		
 	}
 }
