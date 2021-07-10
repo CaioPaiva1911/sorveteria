@@ -7,6 +7,10 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+
+import controller.ControllerProduto;
+import model.Usuario;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -26,6 +30,8 @@ public class Produto extends JFrame {
 	private JTextField txtSabor;
 	private JTextField txtPreco;
 	private JTextField txtQtd;
+	public static Usuario usuario;
+	private JTextField fornecedorId;
 
 	/**
 	 * Launch the application.
@@ -34,7 +40,7 @@ public class Produto extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Produto frame = new Produto();
+					Produto frame = new Produto(usuario);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -46,7 +52,10 @@ public class Produto extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Produto() {
+	public Produto(Usuario usuario) {
+		this.usuario = usuario;
+		ControllerProduto controller = new ControllerProduto();
+		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Produto.class.getResource("/icons/cadastro.png")));
 		getContentPane().setFont(new Font("Arial", Font.PLAIN, 12));
 		setTitle("Cadastro de Produto");
@@ -62,19 +71,19 @@ public class Produto extends JFrame {
 		JLabel lblSabor = new JLabel("Sabor");
 		lblSabor.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblSabor.setFont(new Font("Arial", Font.PLAIN, 14));
-		lblSabor.setBounds(54, 181, 123, 24);
+		lblSabor.setBounds(54, 216, 123, 24);
 		getContentPane().add(lblSabor);
 		
 		JLabel lblPreo = new JLabel("Pre\u00E7o");
 		lblPreo.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblPreo.setFont(new Font("Arial", Font.PLAIN, 14));
-		lblPreo.setBounds(54, 216, 123, 24);
+		lblPreo.setBounds(54, 251, 123, 24);
 		getContentPane().add(lblPreo);
 		
 		JLabel lblQuantidade = new JLabel("Quantidade");
 		lblQuantidade.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblQuantidade.setFont(new Font("Arial", Font.PLAIN, 14));
-		lblQuantidade.setBounds(54, 252, 123, 24);
+		lblQuantidade.setBounds(54, 286, 123, 24);
 		getContentPane().add(lblQuantidade);
 		
 		JLabel lblNome = new JLabel("Nome");
@@ -98,27 +107,41 @@ public class Produto extends JFrame {
 		txtSabor = new JTextField();
 		txtSabor.setFont(new Font("Arial", Font.PLAIN, 12));
 		txtSabor.setColumns(10);
-		txtSabor.setBounds(187, 183, 147, 23);
+		txtSabor.setBounds(187, 218, 147, 23);
 		getContentPane().add(txtSabor);
 		
 		txtPreco = new JTextField();
 		txtPreco.setFont(new Font("Arial", Font.PLAIN, 12));
 		txtPreco.setColumns(10);
-		txtPreco.setBounds(187, 218, 90, 23);
+		txtPreco.setBounds(187, 254, 90, 23);
 		getContentPane().add(txtPreco);
 		
 		txtQtd = new JTextField();
 		txtQtd.setFont(new Font("Arial", Font.PLAIN, 12));
 		txtQtd.setColumns(10);
-		txtQtd.setBounds(187, 254, 79, 23);
+		txtQtd.setBounds(187, 288, 79, 23);
 		getContentPane().add(txtQtd);
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.setForeground(SystemColor.window);
 		btnCadastrar.setBackground(new Color(186, 85, 211));
 		btnCadastrar.setFont(new Font("JetBrains Mono", Font.PLAIN, 15));
-		btnCadastrar.setBounds(187, 308, 135, 32);
+		btnCadastrar.setBounds(187, 342, 135, 32);
 		getContentPane().add(btnCadastrar);
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				model.Produto prod = new model.Produto(
+						txtNome.getText(),
+						txtDescricao.getText(),
+						Integer.parseInt( fornecedorId.getText() ),
+						txtSabor.getText(),
+						Float.parseFloat( txtPreco.getText() ),
+						Integer.parseInt( txtQtd.getText() )
+						);
+				controller.inserirProduto(usuario, prod);
+				dispose();
+			}
+		});
 		
 		JPanel painel = new JPanel();
 		painel.setBackground(new Color(186, 85, 211));
@@ -140,11 +163,19 @@ public class Produto extends JFrame {
 			}
 		});
 		btnVoltar.setForeground(SystemColor.window);
-		btnVoltar.setIcon(new ImageIcon(Produto.class.getResource("/icons/left.png")));
 		btnVoltar.setBackground(new Color(186, 85, 211));
 		btnVoltar.setFont(new Font("JetBrains Mono", Font.PLAIN, 15));
 		btnVoltar.setBounds(311, 415, 135, 32);
 		getContentPane().add(btnVoltar);
+		
+		fornecedorId = new JTextField();
+		fornecedorId.setBounds(187, 182, 86, 20);
+		getContentPane().add(fornecedorId);
+		fornecedorId.setColumns(10);
+		
+		JLabel lblNewLabel = new JLabel("fornecedorId");
+		lblNewLabel.setBounds(107, 191, 70, 14);
+		getContentPane().add(lblNewLabel);
 		setBounds(100, 100, 491, 500);
 
 	}

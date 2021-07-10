@@ -6,18 +6,27 @@ public class Produto {
 	private Integer id;
 	private String nome;
 	private String desc;
-	private String fornecedor;
+	private int fornecedorId;
 	private String color;
 	private float preco;
 	private Integer qtd;
 	
+	public Produto(String nome, String desc, int fornecedorId, String color, float preco, Integer qtd) {
+		super();
+		this.nome = nome;
+		this.desc = desc;
+		this.fornecedorId = fornecedorId;
+		this.color = color;
+		this.preco = preco;
+		this.qtd = qtd;
+	}
 	
-	public Produto(Integer id, String nome, String desc, String fornecedor, String color, float preco, Integer qtd) {
+	public Produto(Integer id, String nome, String desc, int fornecedorId, String color, float preco, Integer qtd) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.desc = desc;
-		this.fornecedor = fornecedor;
+		this.fornecedorId = fornecedorId;
 		this.color = color;
 		this.preco = preco;
 		this.qtd = qtd;
@@ -39,11 +48,11 @@ public class Produto {
 	public void setDesc(String desc) {
 		this.desc = desc;
 	}
-	public String getFornecedor() {
-		return fornecedor;
+	public int getFornecedorId() {
+		return fornecedorId;
 	}
-	public void setFornecedor(String fornecedor) {
-		this.fornecedor = fornecedor;
+	public void setFornecedorId(int fornecedorId) {
+		this.fornecedorId = fornecedorId;
 	}
 	public String getColor() {
 		return color;
@@ -63,15 +72,4 @@ public class Produto {
 	public void setQtd(Integer qtd) {
 		this.qtd = qtd;
 	}
-}
-
-
-
-//Não sei se vou utilizar
-enum COR {
-	amarelo,
-	vermelho,
-	laranja,
-	
-	
 }

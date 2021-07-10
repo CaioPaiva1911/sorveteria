@@ -7,6 +7,12 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+
+import controller.ControllerFornecedor;
+import controller.ControllerProduto;
+import model.Fornecedor;
+import model.Usuario;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
@@ -22,6 +28,7 @@ public class AlterFornecedor extends JFrame {
 	private JTextField txtBuscar;
 	private JTextField txtNome;
 	private JTextField txtEndereco;
+	public static Usuario usuario;
 
 	/**
 	 * Launch the application.
@@ -30,7 +37,7 @@ public class AlterFornecedor extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AlterFornecedor frame = new AlterFornecedor();
+					AlterFornecedor frame = new AlterFornecedor(usuario);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,7 +49,9 @@ public class AlterFornecedor extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AlterFornecedor() {
+	public AlterFornecedor(Usuario usuario) {
+		ControllerFornecedor controller = new ControllerFornecedor();
+		this.usuario = usuario;
 		getContentPane().setFont(new Font("Arial", Font.PLAIN, 15));
 		setTitle("Altera\u00E7\u00E3o de Fornecedor");
 		getContentPane().setBackground(new Color(255, 255, 153));
@@ -67,6 +76,13 @@ public class AlterFornecedor extends JFrame {
 		btnBuscar.setFont(new Font("JetBrains Mono", Font.PLAIN, 16));
 		btnBuscar.setBounds(237, 97, 135, 23);
 		getContentPane().add(btnBuscar);
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Fornecedor forn = controller.pegarFornecedor(Integer.parseInt(txtBuscar.getText()));
+				txtNome.setText(forn.getNome());
+				txtEndereco.setText(forn.getEndereco());
+			}
+		});
 		
 		JLabel lblNome = new JLabel("Nome");
 		lblNome.setHorizontalAlignment(SwingConstants.CENTER);
@@ -96,9 +112,14 @@ public class AlterFornecedor extends JFrame {
 		btnAlterar.setFont(new Font("JetBrains Mono", Font.PLAIN, 16));
 		btnAlterar.setBounds(153, 255, 117, 23);
 		getContentPane().add(btnAlterar);
+		btnAlterar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.alterarFornecedor(txtNome.getText(), txtEndereco.getText());
+				dispose();
+			}
+		});
 		
 		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.setIcon(new ImageIcon(AlterFornecedor.class.getResource("/icons/left.png")));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();

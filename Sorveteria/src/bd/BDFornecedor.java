@@ -56,6 +56,25 @@ public class BDFornecedor {
 		return fornecedor;
 	}
 	
+	public boolean updateFornecedor(Fornecedor fornecedor) {
+		try {
+			Connection conn = BDConnection.getConnection();
+			
+			String query = "UPDATE Fornecedor SET nome = ?, endereco = ? where nome = ?";
+			PreparedStatement preparedStmt = (PreparedStatement) conn.prepareStatement(query);
+			preparedStmt.setString(1, fornecedor.getNome());
+			preparedStmt.setString(2, fornecedor.getEndereco());
+			preparedStmt.setString(3, fornecedor.getNome());
+			
+			preparedStmt.execute();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
 	public boolean insertFornecedor(Fornecedor fornecedor) {
 		try {
 			Connection conn = BDConnection.getConnection();
@@ -69,7 +88,8 @@ public class BDFornecedor {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+			return false;
 		}
-		return false;
+		return true;
 	}
 }

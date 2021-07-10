@@ -5,6 +5,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controller.ControllerProduto;
+import model.Usuario;
+
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -27,6 +31,7 @@ public class Desconto extends JFrame {
 	private JTextField txtDesconto;
 	private JTextField txtvalorProduto;
 	private JTextField txtValorFinal;
+	public static Usuario usuario;
 
 	/**
 	 * Launch the application.
@@ -35,7 +40,7 @@ public class Desconto extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Desconto frame = new Desconto();
+					Desconto frame = new Desconto(usuario);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,7 +52,10 @@ public class Desconto extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Desconto() {
+	public Desconto(Usuario usuario) {
+		this.usuario = usuario;
+		ControllerProduto controller = new ControllerProduto();
+		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Desconto.class.getResource("/icons/ice-cream.png")));
 		setTitle("Aplicar Desconto");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -92,6 +100,14 @@ public class Desconto extends JFrame {
 		btnNewButton.setFont(new Font("JetBrains Mono", Font.PLAIN, 16));
 		btnNewButton.setBounds(228, 162, 128, 21);
 		FramePrincipal.add(btnNewButton);
+		
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Float valor = controller.buscarValorProduto(txtBusca.getText());
+				txtvalorProduto.setText(String.valueOf(valor));
+				
+			}
+		});
 		
 		JLabel lblDesconto = new JLabel("Desconto");
 		lblDesconto.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -142,7 +158,6 @@ public class Desconto extends JFrame {
 			}
 		});
 		btnVoltar.setForeground(Color.WHITE);
-		btnVoltar.setIcon(new ImageIcon(Desconto.class.getResource("/icons/left.png")));
 		btnVoltar.setBackground(new Color(186, 85, 211));
 		btnVoltar.setFont(new Font("JetBrains Mono", Font.PLAIN, 16));
 		btnVoltar.setBounds(214, 343, 142, 21);
@@ -155,6 +170,14 @@ public class Desconto extends JFrame {
 		btnAplicar.setBackground(new Color(186, 85, 211));
 		btnAplicar.setBounds(228, 239, 128, 21);
 		FramePrincipal.add(btnAplicar);
+		
+		btnAplicar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.aplicarDesconto(usuario,txtBusca.getText(), txtDesconto.getText());
+				Float valorFinal = controller.buscarValorProduto(txtBusca.getText());
+				txtValorFinal.setText(String.valueOf(valorFinal));
+			}
+		});
 	}
 
 }

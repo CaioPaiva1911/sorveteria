@@ -7,6 +7,10 @@ import java.awt.Font;
 import javax.swing.JLabel;
 
 import javax.swing.SwingConstants;
+
+import controller.ControllerUsuario;
+import model.Usuario;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -26,6 +30,7 @@ public class AlterCliente extends JFrame {
 	private JTextField txtBuscaNome;
 	private JTextField txtLogin;
 	private JPasswordField passSenha;
+	public static Usuario usuario;
 
 	/**
 	 * Launch the application.
@@ -34,7 +39,7 @@ public class AlterCliente extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AlterCliente frame = new AlterCliente();
+					AlterCliente frame = new AlterCliente(usuario);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -46,7 +51,9 @@ public class AlterCliente extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AlterCliente() {
+	public AlterCliente(Usuario usuario) {
+		ControllerUsuario controller = new ControllerUsuario();
+		this.usuario = usuario;
 		setTitle("Alterar Cliente");
 		getContentPane().setBackground(new Color(255, 255, 153));
 		getContentPane().setFont(new Font("Arial", Font.PLAIN, 14));
@@ -79,6 +86,9 @@ public class AlterCliente extends JFrame {
 		btnPesquisar.setFont(new Font("JetBrains Mono", Font.PLAIN, 15));
 		btnPesquisar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Usuario usuarioNovo = controller.pegarUsuarioPorNome(usuario,txtBuscaNome.getText());
+				txtLogin.setText(usuarioNovo.getLogin());
+				passSenha.setText(usuarioNovo.getSenha());
 			}
 		});
 		btnPesquisar.setBounds(296, 90, 129, 23);
@@ -114,6 +124,12 @@ public class AlterCliente extends JFrame {
 		btnAlterar.setFont(new Font("JetBrains Mono", Font.PLAIN, 15));
 		btnAlterar.setBounds(158, 328, 104, 23);
 		getContentPane().add(btnAlterar);
+		btnAlterar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.alterarUsuario(usuario, new Usuario(txtLogin.getText(), String.valueOf(passSenha.getPassword())));
+				dispose();
+			}
+		});
 		
 		passSenha = new JPasswordField();
 		passSenha.setBounds(131, 165, 176, 20);
@@ -134,7 +150,6 @@ public class AlterCliente extends JFrame {
 				dispose();
 			}
 		});
-		btnVoltar.setIcon(new ImageIcon(AlterCliente.class.getResource("/icons/left.png")));
 		btnVoltar.setForeground(Color.WHITE);
 		btnVoltar.setFont(new Font("JetBrains Mono", Font.PLAIN, 15));
 		btnVoltar.setBackground(new Color(255, 140, 0));

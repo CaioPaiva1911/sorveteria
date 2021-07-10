@@ -7,6 +7,10 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+
+import controller.ControllerFornecedor;
+import model.Usuario;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -22,7 +26,7 @@ public class Fornecedor extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JTextField txtNome;
 	private JTextField txtEndereco;
-
+	public static Usuario usuario;
 	/**
 	 * Launch the application.
 	 */
@@ -30,7 +34,7 @@ public class Fornecedor extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Fornecedor frame = new Fornecedor();
+					Fornecedor frame = new Fornecedor(usuario);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,7 +46,9 @@ public class Fornecedor extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Fornecedor() {
+	public Fornecedor(Usuario usuario) {
+		ControllerFornecedor controller = new ControllerFornecedor();
+		this.usuario = usuario;
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Fornecedor.class.getResource("/icons/cadastro.png")));
 		setTitle("Cadastrar");
 		getContentPane().setBackground(new Color(255, 255, 153));
@@ -85,6 +91,7 @@ public class Fornecedor extends JFrame {
 		btnCadastrar.setToolTipText("Cadastrar Fornecedor");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				controller.cadastrarFornecedor(txtNome.getText(), txtEndereco.getText());
 			}
 		});
 		btnCadastrar.setForeground(Color.WHITE);
@@ -107,7 +114,6 @@ public class Fornecedor extends JFrame {
 			}
 		});
 		btnNewButton.setBackground(new Color(186, 85, 211));
-		btnNewButton.setIcon(new ImageIcon(Fornecedor.class.getResource("/icons/left.png")));
 		btnNewButton.setFont(new Font("JetBrains Mono", Font.PLAIN, 16));
 		btnNewButton.setBounds(271, 357, 153, 28);
 		getContentPane().add(btnNewButton);

@@ -6,6 +6,11 @@ import javax.swing.JFrame;
 import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+
+import controller.ControllerProduto;
+import model.Produto;
+import model.Usuario;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -23,11 +28,14 @@ public class AlterProduto extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JTextField txtPesquisa;
+	private JTextField txtId = new JTextField();
 	private JTextField txtNome;
 	private JTextField txtDescricao;
 	private JTextField txtFornecedor;
 	private JTextField txtSabor;
 	private JTextField txtPreco;
+	private JTextField txtQuantidade = new JTextField();
+	public static Usuario usuario;
 
 	/**
 	 * Launch the application.
@@ -36,7 +44,7 @@ public class AlterProduto extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AlterProduto frame = new AlterProduto();
+					AlterProduto frame = new AlterProduto(usuario);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -48,7 +56,9 @@ public class AlterProduto extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AlterProduto() {
+	public AlterProduto(Usuario usuario) {
+		ControllerProduto controller = new ControllerProduto();
+		this.usuario = usuario;
 		setIconImage(Toolkit.getDefaultToolkit().getImage(AlterProduto.class.getResource("/icons/alterar.png")));
 		setTitle("Altera\u00E7\u00E3o de Produto");
 		getContentPane().setForeground(Color.WHITE);
@@ -75,6 +85,16 @@ public class AlterProduto extends JFrame {
 		btnPesquisar.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
 		btnPesquisar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Produto prod = controller.pegarProduto(usuario, Integer.parseInt(txtPesquisa.getText()));
+				
+				txtId.setText(String.valueOf(prod.getId()));
+				txtNome.setText(prod.getNome());
+				txtDescricao.setText(prod.getDesc());
+				txtFornecedor.setText(String.valueOf(prod.getFornecedorId()));
+				txtPreco.setText(String.valueOf(prod.getPreco()));
+				txtSabor.setText(prod.getColor());
+				txtQuantidade.setText(String.valueOf(prod.getQtd()));
+			
 			}
 		});
 		btnPesquisar.setBounds(277, 90, 129, 23);
@@ -146,7 +166,21 @@ public class AlterProduto extends JFrame {
 		btnAlterar.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
 		btnAlterar.setBounds(158, 328, 104, 23);
 		getContentPane().add(btnAlterar);
-		
+		btnAlterar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Produto prod = new Produto(
+						Integer.parseInt(txtId.getText()),
+						txtNome.getText(),
+						txtDescricao.getText(),
+						Integer.parseInt(txtFornecedor.getText()),
+						txtSabor.getText(),
+						Float.parseFloat(txtPreco.getText()),
+						Integer.parseInt(txtQuantidade.getText())
+						
+						);
+				controller.alterarProduto(usuario, prod);
+			}
+		});
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(186, 85, 211));
 		panel.setBounds(0, 0, 435, 78);
@@ -166,7 +200,6 @@ public class AlterProduto extends JFrame {
 				dispose();
 			}
 		});
-		btnVoltar.setIcon(new ImageIcon(AlterProduto.class.getResource("/icons/left.png")));
 		btnVoltar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

@@ -1,5 +1,8 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Fornecedor {
 	
 	private Integer id;
@@ -35,7 +38,6 @@ public class Fornecedor {
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
-	
 	
 
 }

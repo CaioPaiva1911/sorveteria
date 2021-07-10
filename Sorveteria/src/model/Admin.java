@@ -1,19 +1,36 @@
 package model;
 
+import bd.BDProdutos;
+import bd.BDUsuario;
+
 public class Admin extends Usuario{
 
 	public Admin(String login, String senha) {
 		super(login, senha);
 	}
-	
-	//TODO removerProduto();
-	public boolean removerProduto(Produto prod) {
-		return true;
+	public Admin(int id,String login, String senha, String tipo) {
+		super(id, login, senha, tipo);
 	}
 	
-	//TODO adicionarProduto();
+	public boolean cadastrarCliente(Usuario usuario) {
+		BDUsuario bd = new BDUsuario();
+		return bd.insertUser(usuario);
+	}
+	
+	public boolean alterarCliente(Usuario usuario) {
+		BDUsuario bd = new BDUsuario();
+		return bd.updateUser(usuario);
+		
+	}
+	
+	public boolean removerProduto(Produto prod) {
+		BDProdutos bd = new BDProdutos();
+		return bd.deleteProduto(prod);
+	}
+
 	public boolean adicionarProduto(Produto prod) {
-		return true;
+		BDProdutos bd = new BDProdutos();
+		return bd.insertProduto(prod);
 	}
 	
 }

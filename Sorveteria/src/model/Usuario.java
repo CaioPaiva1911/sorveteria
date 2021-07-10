@@ -2,9 +2,10 @@ package model;
 
 public class Usuario {
 	
+	private int id;
 	private String login;
 	private String senha;
-	
+	private String tipo;
 	
 	public Usuario(String login, String senha) {
 		super();
@@ -12,15 +13,16 @@ public class Usuario {
 		this.senha = senha;
 	}
 	
-	 //TODO comprarProduto();
-	public boolean comprarProduto(Produto prod) {
-		return true;
-	}
-	//TODO criar o bd pra lista de desejos e criar a funcao
-	public boolean adicionarNaListaDeDesejos(Produto prod) {
-		return true;
+	public Usuario(int id, String login, String senha, String tipo) {
+		super();
+		this.login = login;
+		this.senha = senha;
+		this.tipo = tipo;
 	}
 	
+	public int getId() {
+		return id;
+	}
 	
 	public String getLogin() {
 		return login;
@@ -34,6 +36,13 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+	public String getTipo() {
+		return tipo;
+	}
+
+
+	
+	
 	
 	
 

@@ -6,6 +6,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controller.ControllerUsuario;
+import model.Usuario;
+
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -27,6 +31,7 @@ public class Cliente extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtLogin;
 	private JPasswordField txtSenha;
+	public static Usuario usuario;
 
 	/**
 	 * Launch the application.
@@ -35,7 +40,7 @@ public class Cliente extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Cliente frame = new Cliente();
+					Cliente frame = new Cliente(usuario);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,10 +52,13 @@ public class Cliente extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Cliente() {
+	public Cliente(Usuario usuario) {
+		this.usuario = usuario;
+		ControllerUsuario ControllerUser = new ControllerUsuario();
+		
 		setTitle("Cadastro de Cliente");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 500, 460);
+		setBounds(100, 100, 500, 772);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 250, 205));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -103,6 +111,18 @@ public class Cliente extends JFrame {
 		btnCadastrar.setFont(new Font("JetBrains Mono", Font.PLAIN, 16));
 		btnCadastrar.setBounds(179, 311, 124, 23);
 		contentPane.add(btnCadastrar);
+		btnCadastrar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String login = txtLogin.getText();
+				String senha = String.valueOf( txtSenha.getPassword() );
+				
+						ControllerUser.cadastrarUsuario(usuario,login, senha);					
+						dispose();
+				}
+				
+			
+		});
 		
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
@@ -110,15 +130,15 @@ public class Cliente extends JFrame {
 				dispose();
 			}
 		});
-		btnVoltar.setIcon(new ImageIcon(Cliente.class.getResource("/icons/left.png")));
 		btnVoltar.setForeground(Color.WHITE);
 		btnVoltar.setFont(new Font("JetBrains Mono", Font.PLAIN, 14));
 		btnVoltar.setBackground(new Color(186, 85, 211));
-		btnVoltar.setBounds(350, 387, 124, 23);
+		btnVoltar.setBounds(350, 700, 124, 23);
 		contentPane.add(btnVoltar);
 		
 		JTextPane txtListaDesejos = new JTextPane();
 		txtListaDesejos.setBounds(179, 202, 159, 87);
 		contentPane.add(txtListaDesejos);
+		
 	}
 }

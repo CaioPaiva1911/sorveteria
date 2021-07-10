@@ -6,6 +6,10 @@ import java.awt.EventQueue;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+
+import controller.ControllerUsuario;
+import model.Usuario;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -44,6 +48,7 @@ public class PerfilConta extends JFrame {
 	 * Create the frame.
 	 */
 	public PerfilConta() {
+		ControllerUsuario controller = new ControllerUsuario();
 		setTitle("Perfil de Conta Usu\u00E1rio");
 		getContentPane().setBackground(new Color(255, 255, 153));
 		getContentPane().setLayout(null);
@@ -69,6 +74,14 @@ public class PerfilConta extends JFrame {
 		btnBuscar.setBounds(379, 103, 133, 23);
 		getContentPane().add(btnBuscar);
 		
+		btnBuscar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Usuario usuarioNovo = controller.SemLoginPegarUsuarioPorNome(txtNomeUsuario.getText());
+				txtNome.setText(usuarioNovo.getLogin());
+				txtTipeUser.setText(usuarioNovo.getTipo());
+			}
+		});
 		JLabel lblNewLabel_1_1 = new JLabel("Nome");
 		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_1_1.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -97,7 +110,7 @@ public class PerfilConta extends JFrame {
 		
 		JLabel lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setIcon(new ImageIcon(PerfilConta.class.getResource("/icons/user.png")));
+		lblNewLabel_2.setIcon(new ImageIcon(PerfilConta.class.getResource("/icons/perfil.png")));
 		lblNewLabel_2.setBounds(165, 133, 170, 146);
 		getContentPane().add(lblNewLabel_2);
 		
@@ -110,7 +123,6 @@ public class PerfilConta extends JFrame {
 				dispose();
 			}
 		});
-		btnVoltar.setIcon(new ImageIcon(PerfilConta.class.getResource("/icons/left.png")));
 		btnVoltar.setFont(new Font("Arial", Font.PLAIN, 16));
 		btnVoltar.setBounds(424, 382, 122, 23);
 		getContentPane().add(btnVoltar);

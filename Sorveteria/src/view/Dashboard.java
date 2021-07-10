@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import model.Usuario;
 import view.alteracao.AlterCliente;
 import view.alteracao.AlterFornecedor;
 import view.alteracao.AlterProduto;
@@ -27,6 +28,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
+import javax.swing.JTextField;
 
 public class Dashboard extends JFrame {
 
@@ -35,6 +37,8 @@ public class Dashboard extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel Menu;
+	private JTextField textLogin;
+	private JTextField textSenha;
 
 	/**
 	 * Launch the application.
@@ -54,9 +58,10 @@ public class Dashboard extends JFrame {
 
 	/**
 	 * Create the frame.
-	 * @throws PropertyVetoException 
+	 * 
 	 */
 	public Dashboard(){
+		Usuario user;
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Dashboard.class.getResource("/icons/ice-cream.png")));
 		setTitle("Sorveteria Do\u00E7urinha Cana\u00E3");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -87,17 +92,27 @@ public class Dashboard extends JFrame {
 		lblResultadosOntem.setBounds(10, 0, 220, 38);
 		panel.add(lblResultadosOntem);
 		
-		JLabel lblVendasAnteriores = new JLabel("100");
-		lblVendasAnteriores.setFont(new Font("Arial", Font.BOLD, 24));
-		lblVendasAnteriores.setHorizontalAlignment(SwingConstants.CENTER);
-		lblVendasAnteriores.setBounds(76, 49, 100, 100);
-		dash_item1.add(lblVendasAnteriores);
+		JLabel labelLogin = new JLabel("Login");
+		labelLogin.setFont(new Font("Arial", Font.BOLD, 12));
+		labelLogin.setHorizontalAlignment(SwingConstants.CENTER);
+		labelLogin.setBounds(76, 29, 100, 100);
+		dash_item1.add(labelLogin);
 		
-		JLabel lblNewLabel_2 = new JLabel("Quantidade de produtos vendidos");
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setFont(new Font("Arial", Font.PLAIN, 12));
-		lblNewLabel_2.setBounds(25, 154, 205, 14);
-		dash_item1.add(lblNewLabel_2);
+		JLabel labelSenha = new JLabel("Senha");
+		labelSenha.setFont(new Font("Arial", Font.BOLD, 12));
+		labelSenha.setHorizontalAlignment(SwingConstants.CENTER);
+		labelSenha.setBounds(76, 89, 100, 100);
+		dash_item1.add(labelSenha);
+		
+		textLogin = new JTextField();
+		textLogin.setBounds(76, 89, 86, 20);
+		dash_item1.add(textLogin);
+		textLogin.setColumns(10);
+		
+		textSenha = new JTextField();
+		textSenha.setBounds(76, 151, 86, 20);
+		dash_item1.add(textSenha);
+		textSenha.setColumns(10);
 		
 		JPanel dash_item2 = new JPanel();
 		dash_item2.setBounds(244, 76, 240, 200);
@@ -204,14 +219,12 @@ public class Dashboard extends JFrame {
 		
 		
 		JMenu itemLogin = new JMenu("Login");
+
+		Usuario usuario;
 		itemLogin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				new Login().setVisible(true);
-			}
-		});
-		itemLogin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+				
 				Login l = new Login();
 				l.setVisible(true);
 			}
@@ -220,10 +233,11 @@ public class Dashboard extends JFrame {
 		itemCadastro.add(itemLogin);
 		
 		JMenuItem itemCliente = new JMenuItem("Cliente");
-		itemCliente.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Cliente cl = new Cliente();
-				cl.setVisible(true);
+		itemCliente.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+					Cliente cl = new Cliente(new Usuario(textLogin.getText(), textSenha.getText()));
+					cl.setVisible(true);
 			}
 		});
 		itemCliente.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -233,8 +247,11 @@ public class Dashboard extends JFrame {
 		itemProduto.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Produto po = new Produto();
-				po.setVisible(true);
+				Login l = new Login();
+				if (l.loggedAdmin) {
+					Produto po = new Produto(new Usuario(textLogin.getText(), textSenha.getText()));
+					po.setVisible(true);
+				}
 			}
 		});
 		itemProduto.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -243,8 +260,8 @@ public class Dashboard extends JFrame {
 		JMenuItem itemDesconto = new JMenuItem("Desconto");
 		itemDesconto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Desconto de = new Desconto();
-				de.setVisible(true);
+					Desconto de = new Desconto(new Usuario(textLogin.getText(), textSenha.getText()));
+					de.setVisible(true);
 			}
 		});
 		itemDesconto.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -253,8 +270,8 @@ public class Dashboard extends JFrame {
 		JMenuItem itemFornecedor = new JMenuItem("Fornecedor");
 		itemFornecedor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Fornecedor fo = new Fornecedor();
-				fo.setVisible(true);
+					Fornecedor fo = new Fornecedor(new Usuario(textLogin.getText(), textSenha.getText()));
+					fo.setVisible(true);
 			}
 		});
 		itemFornecedor.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -281,8 +298,8 @@ public class Dashboard extends JFrame {
 		JMenuItem itemAlterCliente = new JMenuItem("Cliente");
 		itemAlterCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AlterCliente ac = new AlterCliente();
-				ac.setVisible(true);
+					AlterCliente ac = new AlterCliente(new Usuario(textLogin.getText(), textSenha.getText()));
+					ac.setVisible(true);
 			}
 		});
 		itemAlterCliente.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -292,8 +309,8 @@ public class Dashboard extends JFrame {
 		itemAlterProduto.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				AlterProduto ap = new AlterProduto();
-				ap.setVisible(true);
+					AlterProduto ap = new AlterProduto(new Usuario(textLogin.getText(), textSenha.getText()));
+					ap.setVisible(true);
 			}
 		});
 		
@@ -303,8 +320,8 @@ public class Dashboard extends JFrame {
 		JMenuItem itemAlterFornecedor = new JMenuItem("Fornecedor");
 		itemAlterFornecedor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AlterFornecedor af = new AlterFornecedor();
-				af.setVisible(true);
+					AlterFornecedor af = new AlterFornecedor(new Usuario(textLogin.getText(), textSenha.getText()));
+					af.setVisible(true);
 			}
 		});
 		itemAlterFornecedor.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -319,8 +336,8 @@ public class Dashboard extends JFrame {
 		JMenuItem itemListFornecedor = new JMenuItem("Fornecedor");
 		itemListFornecedor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ListarFornecedor lf = new ListarFornecedor();
-				lf.setVisible(true);
+					ListarFornecedor lf = new ListarFornecedor(new Usuario(textLogin.getText(), textSenha.getText()));
+					lf.setVisible(true);
 				
 			}
 		});
@@ -330,7 +347,7 @@ public class Dashboard extends JFrame {
 		JMenuItem mntmNewMenuItem = new JMenuItem("Produto");
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ListaProduto lp = new ListaProduto();
+				ListaProduto lp = new ListaProduto(new Usuario(textLogin.getText(), textSenha.getText()));
 				lp.setVisible(true);
 			}
 		});
@@ -342,9 +359,12 @@ public class Dashboard extends JFrame {
 		JMenu itemPerfil = new JMenu("Perfil Conta");
 		itemPerfil.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
-				PerfilConta pf = new PerfilConta();
-				pf.setVisible(true);
+			public void mousePressed(MouseEvent e) {
+				Login l = new Login();
+				if (l.loggedAdmin) {
+					PerfilConta pf = new PerfilConta();
+					pf.setVisible(true);
+				}
 			}
 		});
 			
@@ -355,7 +375,7 @@ public class Dashboard extends JFrame {
 		JMenu itemSair = new JMenu("Sair");
 		itemSair.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mousePressed(MouseEvent e) {
 				dispose();
 			}
 		});

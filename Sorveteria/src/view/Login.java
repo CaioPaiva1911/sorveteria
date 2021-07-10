@@ -10,6 +10,9 @@ import javax.swing.JButton;
 import java.awt.Font;
 
 import javax.swing.SwingConstants;
+
+import controller.ControllerUsuario;
+
 import javax.swing.JPanel;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
@@ -23,6 +26,8 @@ public class Login extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JTextField txtLogin;
 	private JPasswordField txtSenha;
+	static boolean loggedAdmin = true;
+	static boolean loggedComum = true;
 
 	/**
 	 * Launch the application.
@@ -32,7 +37,10 @@ public class Login extends JFrame {
 			public void run() {
 				try {
 					Login frame = new Login();
-					frame.setVisible(true);
+					if (loggedComum) {
+						frame.setVisible(true);
+					}
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -42,9 +50,11 @@ public class Login extends JFrame {
 
 	/**
 	 * Create the frame.
-	 * @throws PropertyVetoException 
+	 * 
 	 */
 	public Login()  {
+		ControllerUsuario ControllerUser = new ControllerUsuario();
+
 		setTitle("Acessar");
 		getContentPane().setFont(new Font("Arial", Font.PLAIN, 16));
 		
@@ -74,7 +84,14 @@ public class Login extends JFrame {
 		btnAcessar.setFont(new Font("JetBrains Mono", Font.BOLD, 16));
 		btnAcessar.setBounds(141, 311, 116, 40);
 		getContentPane().add(btnAcessar);
-		
+		btnAcessar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+
+			}
+		});
 		JPanel labelPanel = new JPanel();
 		labelPanel.setBackground(new Color(186, 85, 211));
 		labelPanel.setBounds(0, 0, 408, 113);
@@ -95,7 +112,6 @@ public class Login extends JFrame {
 				dispose();
 			}
 		});
-		btnVoltar.setIcon(new ImageIcon(Login.class.getResource("/icons/left.png")));
 		btnVoltar.setFont(new Font("JetBrains Mono", Font.BOLD, 16));
 		btnVoltar.setBackground(new Color(186, 85, 211));
 		btnVoltar.setBounds(247, 422, 138, 28);
@@ -110,4 +126,5 @@ public class Login extends JFrame {
 		
 
 	}
+
 }
