@@ -58,9 +58,9 @@ public class Dashboard extends JFrame {
 	 */
 	public Dashboard(){
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Dashboard.class.getResource("/icons/ice-cream.png")));
-		setTitle("Sorveteria");
+		setTitle("Sorveteria Do\u00E7urinha Cana\u00E3");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 909, 543);
+		setBounds(100, 100, 959, 543);
 		Menu = new JPanel();
 		Menu.setSize(new Dimension(3800, 90));
 		Menu.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -175,7 +175,7 @@ public class Dashboard extends JFrame {
 		
 		JLabel lblTitulo = new JLabel("Dashboard");
 		lblTitulo.setBounds(10, 262, 233, 38);
-		lblTitulo.setFont(new Font("Book Antiqua", Font.BOLD, 31));
+		lblTitulo.setFont(new Font("JetBrains Mono", Font.BOLD, 31));
 		Menu.add(lblTitulo);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -190,7 +190,7 @@ public class Dashboard extends JFrame {
 		menuBar.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		menuBar.setMaximumSize(new Dimension(3000, 60));
 		
-		menuBar.setBounds(0, 0, 893, 66);
+		menuBar.setBounds(0, 0, 943, 66);
 		menuBar.setFont(new Font("Arial", Font.PLAIN, 14));
 		menuBar.setBackground(new Color(255, 182, 193));
 		Menu.add(menuBar);
@@ -364,7 +364,7 @@ public class Dashboard extends JFrame {
 		itemSair.setFont(new Font("Arial", Font.PLAIN, 16));
 		menuBar.add(itemSair);
 		
-		JLabel lblLogo = new JLabel("Sorveteria");
+		JLabel lblLogo = new JLabel("Sorveteria Do\u00E7urinha Cana\u00E3");
 		lblLogo.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -372,7 +372,7 @@ public class Dashboard extends JFrame {
 				frame.setVisible(true);
 			}
 		});
-		lblLogo.setFont(new Font("Arial", Font.BOLD, 20));
+		lblLogo.setFont(new Font("JetBrains Mono", Font.BOLD, 20));
 		lblLogo.setIcon(new ImageIcon(Dashboard.class.getResource("/icons/ice-cream.png")));
 		menuBar.add(lblLogo);
 		
