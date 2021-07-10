@@ -2,15 +2,20 @@ package view;
 
 import java.awt.EventQueue;
 
-import javax.swing.JInternalFrame;
+import javax.swing.JFrame;
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
-public class Fornecedor extends JInternalFrame {
+public class Fornecedor extends JFrame {
 	/**
 	 * 
 	 */
@@ -38,14 +43,16 @@ public class Fornecedor extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public Fornecedor() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Fornecedor.class.getResource("/icons/cadastro.png")));
 		setTitle("Cadastrar");
 		getContentPane().setBackground(new Color(255, 255, 153));
 		getContentPane().setLayout(null);
 		
 		JLabel lblTitulo = new JLabel("Cadastrar Fornecedor");
+		lblTitulo.setForeground(Color.WHITE);
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitulo.setFont(new Font("Arial", Font.BOLD, 20));
-		lblTitulo.setBounds(94, 36, 239, 22);
+		lblTitulo.setFont(new Font("JetBrains Mono", Font.BOLD, 25));
+		lblTitulo.setBounds(43, 36, 345, 33);
 		getContentPane().add(lblTitulo);
 		
 		JLabel lblNome = new JLabel("Nome");
@@ -61,21 +68,49 @@ public class Fornecedor extends JInternalFrame {
 		getContentPane().add(lblEndereo);
 		
 		txtNome = new JTextField();
+		txtNome.setToolTipText("Digite o nome do fornecedor");
 		txtNome.setFont(new Font("Arial", Font.PLAIN, 12));
 		txtNome.setBounds(110, 122, 141, 20);
 		getContentPane().add(txtNome);
 		txtNome.setColumns(10);
 		
 		txtEndereco = new JTextField();
+		txtEndereco.setToolTipText("Digite o endere\u00E7o do fornecedor");
 		txtEndereco.setFont(new Font("Arial", Font.PLAIN, 12));
 		txtEndereco.setColumns(10);
 		txtEndereco.setBounds(110, 153, 314, 20);
 		getContentPane().add(txtEndereco);
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
-		btnCadastrar.setFont(new Font("Arial", Font.PLAIN, 20));
+		btnCadastrar.setToolTipText("Cadastrar Fornecedor");
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnCadastrar.setForeground(Color.WHITE);
+		btnCadastrar.setBackground(new Color(186, 85, 211));
+		btnCadastrar.setFont(new Font("JetBrains Mono", Font.PLAIN, 16));
 		btnCadastrar.setBounds(133, 239, 141, 33);
 		getContentPane().add(btnCadastrar);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(186, 85, 211));
+		panel.setBounds(0, 0, 434, 98);
+		getContentPane().add(panel);
+		
+		JButton btnNewButton = new JButton("Voltar");
+		btnNewButton.setToolTipText("Voltar para a tela anterior");
+		btnNewButton.setForeground(Color.WHITE);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnNewButton.setBackground(new Color(186, 85, 211));
+		btnNewButton.setIcon(new ImageIcon(Fornecedor.class.getResource("/icons/left.png")));
+		btnNewButton.setFont(new Font("JetBrains Mono", Font.PLAIN, 16));
+		btnNewButton.setBounds(271, 357, 153, 28);
+		getContentPane().add(btnNewButton);
 		setBounds(100, 100, 450, 450);
 
 	}

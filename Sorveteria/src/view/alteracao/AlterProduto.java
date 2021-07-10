@@ -2,10 +2,9 @@ package view.alteracao;
 
 import java.awt.EventQueue;
 
-import javax.swing.JInternalFrame;
+import javax.swing.JFrame;
 import java.awt.Font;
 import javax.swing.JLabel;
-import java.awt.BorderLayout;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -13,18 +12,22 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-public class AlterProduto extends JInternalFrame {
+public class AlterProduto extends JFrame {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
+	private JTextField txtPesquisa;
+	private JTextField txtNome;
+	private JTextField txtDescricao;
+	private JTextField txtFornecedor;
+	private JTextField txtSabor;
+	private JTextField txtPreco;
 
 	/**
 	 * Launch the application.
@@ -46,15 +49,12 @@ public class AlterProduto extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public AlterProduto() {
-		getContentPane().setBackground(new Color(255, 255, 153));
-		getContentPane().setFont(new Font("Arial", Font.PLAIN, 14));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(AlterProduto.class.getResource("/icons/alterar.png")));
+		setTitle("Altera\u00E7\u00E3o de Produto");
+		getContentPane().setForeground(Color.WHITE);
+		getContentPane().setBackground(new Color(255, 222, 173));
+		getContentPane().setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
 		getContentPane().setLayout(null);
-		
-		JLabel lblTitulo = new JLabel("Alterar Cadastro de Produto");
-		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitulo.setFont(new Font("Arial", Font.PLAIN, 20));
-		lblTitulo.setBounds(69, 28, 263, 24);
-		getContentPane().add(lblTitulo);
 		
 		JLabel lblPesquisa = new JLabel("Pesquisar");
 		lblPesquisa.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -62,20 +62,22 @@ public class AlterProduto extends JInternalFrame {
 		lblPesquisa.setBounds(32, 89, 89, 24);
 		getContentPane().add(lblPesquisa);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Arial", Font.PLAIN, 15));
-		textField.setBounds(131, 92, 62, 20);
-		getContentPane().add(textField);
-		textField.setColumns(10);
+		txtPesquisa = new JTextField();
+		txtPesquisa.setFont(new Font("Arial", Font.PLAIN, 15));
+		txtPesquisa.setBounds(131, 92, 136, 20);
+		getContentPane().add(txtPesquisa);
+		txtPesquisa.setColumns(10);
 		
 		JButton btnPesquisar = new JButton("Buscar");
+		btnPesquisar.setBackground(new Color(186, 85, 211));
+		btnPesquisar.setForeground(Color.WHITE);
 		btnPesquisar.setIcon(new ImageIcon(AlterProduto.class.getResource("/icons/lupa.png")));
-		btnPesquisar.setFont(new Font("Arial", Font.PLAIN, 15));
+		btnPesquisar.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
 		btnPesquisar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnPesquisar.setBounds(203, 91, 129, 23);
+		btnPesquisar.setBounds(277, 90, 129, 23);
 		getContentPane().add(btnPesquisar);
 		
 		JLabel lblNome = new JLabel("Nome");
@@ -108,40 +110,75 @@ public class AlterProduto extends JInternalFrame {
 		lblPreo.setBounds(32, 267, 89, 24);
 		getContentPane().add(lblPreo);
 		
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("Arial", Font.PLAIN, 15));
-		textField_1.setColumns(10);
-		textField_1.setBounds(131, 130, 176, 20);
-		getContentPane().add(textField_1);
+		txtNome = new JTextField();
+		txtNome.setFont(new Font("Arial", Font.PLAIN, 15));
+		txtNome.setColumns(10);
+		txtNome.setBounds(131, 130, 176, 20);
+		getContentPane().add(txtNome);
 		
-		textField_2 = new JTextField();
-		textField_2.setFont(new Font("Arial", Font.PLAIN, 15));
-		textField_2.setColumns(10);
-		textField_2.setBounds(131, 165, 176, 20);
-		getContentPane().add(textField_2);
+		txtDescricao = new JTextField();
+		txtDescricao.setFont(new Font("Arial", Font.PLAIN, 15));
+		txtDescricao.setColumns(10);
+		txtDescricao.setBounds(131, 165, 176, 20);
+		getContentPane().add(txtDescricao);
 		
-		textField_3 = new JTextField();
-		textField_3.setFont(new Font("Arial", Font.PLAIN, 15));
-		textField_3.setColumns(10);
-		textField_3.setBounds(131, 200, 176, 20);
-		getContentPane().add(textField_3);
+		txtFornecedor = new JTextField();
+		txtFornecedor.setFont(new Font("Arial", Font.PLAIN, 15));
+		txtFornecedor.setColumns(10);
+		txtFornecedor.setBounds(131, 200, 176, 20);
+		getContentPane().add(txtFornecedor);
 		
-		textField_4 = new JTextField();
-		textField_4.setFont(new Font("Arial", Font.PLAIN, 15));
-		textField_4.setColumns(10);
-		textField_4.setBounds(131, 235, 176, 20);
-		getContentPane().add(textField_4);
+		txtSabor = new JTextField();
+		txtSabor.setFont(new Font("Arial", Font.PLAIN, 15));
+		txtSabor.setColumns(10);
+		txtSabor.setBounds(131, 235, 176, 20);
+		getContentPane().add(txtSabor);
 		
-		textField_5 = new JTextField();
-		textField_5.setFont(new Font("Arial", Font.PLAIN, 15));
-		textField_5.setColumns(10);
-		textField_5.setBounds(131, 270, 104, 20);
-		getContentPane().add(textField_5);
+		txtPreco = new JTextField();
+		txtPreco.setFont(new Font("Arial", Font.PLAIN, 15));
+		txtPreco.setColumns(10);
+		txtPreco.setBounds(131, 270, 104, 20);
+		getContentPane().add(txtPreco);
 		
 		JButton btnAlterar = new JButton("Alterar");
-		btnAlterar.setFont(new Font("Arial", Font.PLAIN, 15));
+		btnAlterar.setBackground(new Color(186, 85, 211));
+		btnAlterar.setForeground(Color.WHITE);
+		btnAlterar.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
 		btnAlterar.setBounds(158, 328, 104, 23);
 		getContentPane().add(btnAlterar);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(186, 85, 211));
+		panel.setBounds(0, 0, 435, 78);
+		getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblTitulo = new JLabel("Alterar Cadastro de Produto");
+		lblTitulo.setForeground(new Color(255, 255, 255));
+		lblTitulo.setBounds(52, 24, 340, 24);
+		panel.add(lblTitulo);
+		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTitulo.setFont(new Font("JetBrains Mono", Font.PLAIN, 20));
+		
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnVoltar.setIcon(new ImageIcon(AlterProduto.class.getResource("/icons/left.png")));
+		btnVoltar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+			}
+		});
+		btnVoltar.setToolTipText("Voltar para a tela anterior");
+		btnVoltar.setForeground(Color.WHITE);
+		btnVoltar.setFont(new Font("JetBrains Mono", Font.PLAIN, 12));
+		btnVoltar.setBackground(new Color(186, 85, 211));
+		btnVoltar.setBounds(277, 378, 129, 23);
+		getContentPane().add(btnVoltar);
 		setBounds(100, 100, 451, 451);
 
 	}

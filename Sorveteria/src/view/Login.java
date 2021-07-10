@@ -2,24 +2,27 @@ package view;
 
 import java.awt.EventQueue;
 
-import javax.swing.JInternalFrame;
+import javax.swing.JFrame;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Font;
-import java.beans.PropertyVetoException;
 
 import javax.swing.SwingConstants;
 import javax.swing.JPanel;
+import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
 
-public class Login extends JInternalFrame {
+public class Login extends JFrame {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField txtLogin;
+	private JPasswordField txtSenha;
 
 	/**
 	 * Launch the application.
@@ -41,12 +44,10 @@ public class Login extends JInternalFrame {
 	 * Create the frame.
 	 * @throws PropertyVetoException 
 	 */
-	public Login() throws PropertyVetoException {
+	public Login()  {
 		setTitle("Acessar");
 		getContentPane().setFont(new Font("Arial", Font.PLAIN, 16));
-		setMaximum(true);
-		setIconifiable(true);
-		setMaximizable(true);
+		
 		getContentPane().setBackground(new Color(255, 255, 153));
 		getContentPane().setLayout(null);
 		
@@ -60,37 +61,53 @@ public class Login extends JInternalFrame {
 		lblSenha.setBounds(66, 202, 79, 23);
 		getContentPane().add(lblSenha);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Arial", Font.PLAIN, 12));
-		textField.setBounds(66, 163, 249, 28);
-		getContentPane().add(textField);
-		textField.setColumns(10);
+		txtLogin = new JTextField();
+		txtLogin.setToolTipText("Digite seu login");
+		txtLogin.setFont(new Font("Arial", Font.PLAIN, 12));
+		txtLogin.setBounds(66, 163, 249, 28);
+		getContentPane().add(txtLogin);
+		txtLogin.setColumns(10);
 		
 		JButton btnAcessar = new JButton("Entrar");
-		btnAcessar.setBackground(new Color(148, 0, 211));
-		btnAcessar.setFont(new Font("Arial", Font.BOLD, 18));
+		btnAcessar.setForeground(Color.WHITE);
+		btnAcessar.setBackground(new Color(186, 85, 211));
+		btnAcessar.setFont(new Font("JetBrains Mono", Font.BOLD, 16));
 		btnAcessar.setBounds(141, 311, 116, 40);
 		getContentPane().add(btnAcessar);
 		
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("Arial", Font.PLAIN, 12));
-		textField_1.setColumns(10);
-		textField_1.setBounds(66, 236, 249, 28);
-		getContentPane().add(textField_1);
-		
 		JPanel labelPanel = new JPanel();
-		labelPanel.setBackground(new Color(138, 43, 226));
+		labelPanel.setBackground(new Color(186, 85, 211));
 		labelPanel.setBounds(0, 0, 408, 113);
 		getContentPane().add(labelPanel);
 		labelPanel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Login");
 		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setBounds(114, 24, 165, 61);
+		lblNewLabel.setBounds(78, 25, 233, 61);
 		labelPanel.add(lblNewLabel);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Brush Script MT", Font.BOLD, 60));
+		lblNewLabel.setFont(new Font("JetBrains Mono", Font.BOLD, 60));
+		
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.setForeground(Color.WHITE);
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnVoltar.setIcon(new ImageIcon(Login.class.getResource("/icons/left.png")));
+		btnVoltar.setFont(new Font("JetBrains Mono", Font.BOLD, 16));
+		btnVoltar.setBackground(new Color(186, 85, 211));
+		btnVoltar.setBounds(247, 422, 138, 28);
+		getContentPane().add(btnVoltar);
+		
+		txtSenha = new JPasswordField();
+		txtSenha.setToolTipText("Digite sua senha");
+		txtSenha.setBounds(66, 233, 249, 28);
+		getContentPane().add(txtSenha);
 		setBounds(100, 100, 424, 500);
+		
+		
 
 	}
 }

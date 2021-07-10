@@ -11,7 +11,6 @@ import javax.swing.SwingConstants;
 import javax.swing.border.CompoundBorder;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.JButton;
 import java.awt.Cursor;
 
 public class Dashboard extends JFrame {
