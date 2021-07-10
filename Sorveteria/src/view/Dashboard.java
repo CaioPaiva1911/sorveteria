@@ -26,6 +26,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class Dashboard extends JFrame {
 
@@ -56,6 +57,7 @@ public class Dashboard extends JFrame {
 	 * @throws PropertyVetoException 
 	 */
 	public Dashboard(){
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Dashboard.class.getResource("/icons/ice-cream.png")));
 		setTitle("Sorveteria");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 909, 543);
@@ -297,10 +299,6 @@ public class Dashboard extends JFrame {
 		
 		itemAlterProduto.setFont(new Font("Arial", Font.PLAIN, 16));
 		itemAlterLogin.add(itemAlterProduto);
-		
-		JMenuItem itemAlterDesconto = new JMenuItem("Desconto");
-		itemAlterDesconto.setFont(new Font("Arial", Font.PLAIN, 16));
-		itemAlterProduto.add(itemAlterDesconto);
 		
 		JMenuItem itemAlterFornecedor = new JMenuItem("Fornecedor");
 		itemAlterFornecedor.addActionListener(new ActionListener() {
